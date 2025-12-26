@@ -4,27 +4,13 @@ import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
-import { useSelector } from "react-redux";
-import type { RootState } from "@/store";
-import { useLogout } from "@/hooks/useLogout";
+import { Navbar } from "./components/Navbar";
+import "./App.css";
 
 function App() {
-    const currentUser = useSelector((state: RootState) => state.auth);
-    const logout = useLogout();
     return (
         <>
-            <div>
-                {currentUser.isLoggedIn ? (
-                    <div>
-                        Logged in as {currentUser.email}{" "}
-                        <button onClick={logout} className="btn btn-secondary">
-                            Logout
-                        </button>
-                    </div>
-                ) : (
-                    <span>Not logged in</span>
-                )}
-            </div>
+            <Navbar />
             <Routes>
                 <Route path="/" element={<Navigate to="/signin" />} />
                 <Route path="/signin" element={<SignIn />} />
